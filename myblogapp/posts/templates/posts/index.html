@@ -119,23 +119,13 @@
 
   <header class="jumbotron">
     <div class="container">
-      <h1>ケアワーカーによる<br>ケアワーカーのための<br>応援サイト</h1>
+      <h1>ケアワーカー<br>介護職同士の<br>コミュニティサイト</h1>
     </div>
   </header>
 
   <main role="main" class="container">
-    <div class="container mb-80"  >
-      <h2 class="main-copy">About Us</h2>
-      <p class="main-text">ケアきょうとは</p>
-      {% load static %} <img class="mb-5" src="{% static 'posts/about.gif'%}"/>
-      <p class="about-text"><i>ケアワーカーによるケアワーカーのための</i>応援サイトです。<br>
-      「ケアきょう」は、ケアワーカー同士でスキルアップや<br>キャリアアップの<i>情報交換が出来るサイト</i>を目指しています。<br>
-      また、プロのアドバイザーによる、<i>メンタルケア・転職サポート</i>も随時行っています。</p>
-    </div>
 
-    <div class="container">
-      <h2 class="main-copy">News & Topics</h2>
-      <p class="main-text">元気で楽しい介護生活を送るための情報を配信しています</p>
+    <div class="container mb=80" >
       <div class="row"> {% for post in posts.all %}
         <div class="col-sm-4">
           <a href="{% url 'posts:post_detail' post.pk %}">
@@ -151,6 +141,16 @@
         </div> {% endfor %}
       </div>
     </div>
+
+    <div class="container mb-80"  >
+      <h2 class="main-copy">About Us</h2>
+      <p class="main-text">ケアきょうとは</p>
+      {% load static %} <img class="mb-5" src="{% static 'posts/about.gif'%}"/>
+      <p class="about-text">ケアワーカー・介護職同士の<i>コミュニティサイト</i>です。<br>
+      「ケアきょう」は、ケアワーカー・介護職同士で<br><i>スキルやキャリアの情報交換</i>が出来るサイトを目指しています。<br>
+      皆様からの記事・動画の投稿やコメントをお待ちしております！！</p>
+    </div>
+  
   </main>
 
   <footer class="footer">

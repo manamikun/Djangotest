@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.text import Truncator
 from django.utils.html import mark_safe
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 from markdown import markdown
 
@@ -62,3 +64,9 @@ class PostReply(models.Model):
                 return mark_safe(markdown(self.message, safe_mode='escape'))
 
 
+class Favorite(models.Model):
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        target_content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+        target_object_id = models.PositiveIntegerField()
+        target = GenericForeignKey('target_content_type', 'target_object_id')
+        timestamp = models.DateTimeField(auto_now_add=True)

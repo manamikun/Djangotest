@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head>
 {% load gravatar %}
-
+{% load static %}
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131090856-2"></script>
 <script>
@@ -19,14 +19,14 @@
   <meta name="google-site-verification" content="_JGLrVmiU8HO7NdJpDkPrxLMp-cSIaNWZLQ1ZxP-d_c" />
   <meta name="description" content="{{ post.summary | striptags }}"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  {% load static %}
   <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
   <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:700,800|Istok+Web|Noto+Sans+JP|Ubuntu:700" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/favorite.css' %}">
   
 </head>
-
+{% load favorite_tags %}
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
     <div class="container">
@@ -103,6 +103,7 @@
             </div>
             <div class="post-body">
               {{ post_comment.get_message_as_markdown }}
+	      {% favorite_button post_comment %}
             </div>
           </div>
         </div>
@@ -128,6 +129,7 @@
                 </div>
                 <div class="post-body">
                   {{ post_reply.get_message_as_markdown }}
+	          {% favorite_button post_reply %}
                 </div>
               </div>
             </div>
@@ -148,9 +150,10 @@
     <p class="mb-0">Copyright © 2018 <a href="https://kaigomedia.co.jp/">株式会社カイゴメディア</a> All Rights Reserved</p>
   </footer>
     
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="{% static 'js/favorite.js' %}"></script>
 
 </body>
 </html>

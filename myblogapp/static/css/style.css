@@ -142,13 +142,12 @@ header .container {
 }
 .card-body {
   padding:30px;
-  height: 320px;
+  height: 275px;
   overflow: hidden;
 }
 
 .post-card-body {
   padding:30px;
-  height: 200px;
   overflow: hidden;
 }
 .card-title {

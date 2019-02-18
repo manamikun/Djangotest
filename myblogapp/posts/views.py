@@ -8,8 +8,12 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 
+from django.apps import apps
+import json
+from django.contrib.contenttypes.models import ContentType
+
 from tags.models import Tag, TagMap
-from .models import Post, PostComment, PostReply
+from .models import Post, PostComment, PostReply, Favorite
 
 from .forms import PostCommentForm, PostReplyForm
 
@@ -72,6 +76,37 @@ class PostReplyCreateView(CreateView):
 
     def get_success_url(self):         
         return reverse_lazy('posts:post_detail', kwargs = {'pk': self.kwargs.get('pk')})
+
+
+
+def add_or_remove(request):
+    if request.is_ajax():
+        user = request.user
+        target_model = apps.get_model(*request.POST['target_model'].split('.') or None)
+        target_content_type = ContentType.objects.get_for_model(target_model)
+        target_object_id = request.POST['target_object_id']
+
+        # delete it if it's already a faorite
+        if user.favorite_set.filter(target_content_type=target_content_type,
+                                 target_object_id=target_object_id):
+            user.favorite_set.get(target_content_type=target_content_type,
+                                     target_object_id=target_object_id).delete()
+            status = 'deleted'
+
+        # otherwise, create it
+        else:
+            user.favorite_set.create(target_content_type=target_content_type,
+                                     target_object_id=target_object_id)
+            status = 'added'
+
+        response = {'status': status,
+                    'fav_count': Favorite.objects.filter(target_content_type=target_content_type,
+                                                         target_object_id=target_object_id).count()}
+
+        return HttpResponse(json.dumps(response, ensure_ascii=False),
+                            content_type='application/json')
+
+    return HttpResponse(status=405)
 
 
 
