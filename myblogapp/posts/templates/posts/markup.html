@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>Mark Up | ケアきょう</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no,address=no,email=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}"/>
+  <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:700,800%7CIstok+Web%7CNoto+Sans+JP%7CUbuntu:700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+</head>
+
+<body id="top">
+  <header class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm" id="nav">
+    <nav class="container">
+      <a href="{% url 'posts:post_list' %}" class="navbar-brand"><i class="far fa-grin-alt fa-lg orenge"></i> ケアきょう</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link sns" href="https://www.facebook.com/CareKyo/" onclick="trackOutboundLink('https://www.facebook.com/CareKyo/'); return false;">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link sns" href="https://twitter.com/carekyo" onclick="trackOutboundLink('https://twitter.com/carekyo'); return false;">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container post-box mb-5">
+    <h1 class="post-title">Markup<br><span>HTMLタグとフォーマット</span></h1>
+    <hr>
+    <div class="post-text">
+      <p>記事のタイトル部分に副題をつけたい場合は<strong>&lt;span&gt; &lt;/span&gt;</strong>タグで囲んでください。<br>文章の途中に改行を入れるときは<strong>&lt;br&gt;</strong>タグを挿入して下さい。
+<pre class="prettyprint linenums mb-3"><code>記事のタイトル&lt;br&gt; &lt;span&gt;サブタイトル&lt;/span&gt;</code></pre>
+      <p class="notes mb-5">ソースコード内は書き込み可能なので、直接編集してコピペして下さい
+      <p class="mb-1">通常の文章は<strong>&lt;p&gt;</strong>タグから始まります。<br>文中の改行は<strong>&lt;br&gt;</strong>タグを挿入して下さい。
+      <p class="notes">&lt;p&gt;の閉じタグ"&lt;/p&gt;"は省略可なので、省略します。
+<pre class="prettyprint linenums"><code>&lt;p&gt;通常の文章は&lt;p&gt;タグから始まります。 
+&lt;br&gt;
+文中の改行は&lt;br&gt;タグを挿入して下さい。
+</code></pre>
+    </div>
+    <!-- 目次 -->
+    <ul id="index" style="margin-top:8rem;">
+      <li class="lv_h2"><a href="#ttl-1">文章に見出しをつける</a>
+      <li class="lv_h2"><a href="#ttl-2">表を入れる</a>
+      <li class="lv_h2"><a href="#ttl-3">箇条書きにする</a>
+      <li class="lv_h2"><a href="#ttl-4">テキストを強調したり、引用や注釈をつける</a>
+      <li class="lv_h2"><a href="#ttl-5">リンクやYoutubeの動画を挿入する</a>
+    </ul>
+    <div class="post-text">
+      <h2 id="ttl-1">文章に見出しをつける</h2>
+      <h2>1番重要な見出し</h2>
+      <p class="mb-1">この見出しをつけるときは、下記のコードを使用してください。
+      <p class="notes">&lt;h<strong>2</strong>&gt;から始まります。&lt;h<strong>1</strong>&gt;はタイトルに使われています。
+<pre class="prettyprint linenums"><code>&lt;h2&gt;1番重要な見出し&lt;/h2&gt;
+<span class="comment">&lt;!-- タグの中のテキストを変更してください --&gt;</span>
+</code></pre>
+      <h3>2番目に重要な見出し</h3>
+      <p>この見出しをつけるときは、下記のコードを使用してください。
+<pre class="prettyprint linenums"><code>&lt;h3&gt;2番目に重要な見出し&lt;/h3&gt;
+<span class="comment">&lt;!-- タグの中のテキストを変更してください --&gt;</span>
+</code></pre>
+      <h4>3番目に重要な見出し</h4>
+      <p>この見出しをつけるときは、下記のコードを使用してください。
+<pre class="prettyprint linenums"><code>&lt;h4&gt;3番目に重要な見出し&lt;/h4&gt;
+<span class="comment">&lt;!-- タグの中のテキストを変更してください --&gt;</span>
+</code></pre>
+<h5>4番目に重要な見出し</h5>
+      <p>この見出しをつけるときは、下記のコードを使用してください。
+<pre class="prettyprint linenums"><code>&lt;h5&gt;4番目に重要な見出し&lt;/h5&gt;
+<span class="comment">&lt;!-- タグの中のテキストを変更してください --&gt;</span>
+</code></pre>
+    <h2 id="ttl-2">表を入れる</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>表のヘッダー
+          <th>表のヘッダー
+          <th>表のヘッダー
+          <th>表のヘッダー
+      <tbody>
+        <tr>
+          <th>見出し
+          <td>テキストが入ります
+          <td>テキストが入ります
+          <td>テキストが入ります
+        <tr>
+          <th>見出し
+          <td>テキストが入ります
+          <td>テキストが入ります
+          <td>テキストが入ります
+        <tr>
+          <th>見出し
+          <td>テキストが入ります
+          <td>テキストが入ります
+          <td>テキストが入ります
+    </table>
+    <p>表組みは、下記のように記述してください。
+<pre class="prettyprint linenums"><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;表のヘッダー
+      &lt;th&gt;表のヘッダー
+      &lt;th&gt;表のヘッダー
+      &lt;th&gt;表のヘッダー
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;見出し
+      &lt;td&gt;テキストが入ります
+      &lt;td&gt;テキストが入ります
+      &lt;td&gt;テキストが入ります
+    &lt;tr&gt;
+      &lt;th&gt;見出し
+      &lt;td&gt;テキストが入ります
+      &lt;td&gt;テキストが入ります
+      &lt;td&gt;テキストが入ります
+    &lt;tr&gt;
+      &lt;th&gt;見出し
+      &lt;td&gt;テキストが入ります
+      &lt;td&gt;テキストが入ります
+      &lt;td&gt;テキストが入ります
+&lt;/table&gt;
+</code></pre>
+    <h2 id="ttl-3">箇条書きにする</h2>
+    <h4>順序のない箇条書き</h4>
+    <ul>
+      <li>1つめの項目
+      <li>2つめの項目
+      <li>3つめの項目
+    </ul>
+    <p>下記のように記述してください。
+<pre class="prettyprint linenums"><code>&lt;ul&gt;
+  &lt;li&gt;1つめの項目
+  &lt;li&gt;2つめの項目
+  &lt;li&gt;3つめの項目
+&lt;/ul&gt;
+<span class="comment">&lt;!-- 項目数に合わせて、&lt;li&gt;タグの数を編集してください --&gt;</span>
+</code></pre>
+    <h4>順序ありの箇条書き</h4>
+    <ol>
+      <li>1つめの項目
+      <li>2つめの項目
+      <li>3つめの項目
+    </ol>
+    <p>下記のように記述してください。
+<pre class="prettyprint linenums"><code>&lt;ol&gt;
+  &lt;li&gt;1つめの項目
+  &lt;li&gt;2つめの項目
+  &lt;li&gt;3つめの項目
+&lt;/ol&gt;
+<span class="comment">&lt;!-- 項目数に合わせて、&lt;li&gt;タグの数を編集してください --&gt;</span>
+</code></pre>
+  <h2 id="ttl-4">テキストを強調したり、引用や注釈をつける</h2>
+    <h4>テキストを強調する</h4>
+    <p>例えば、テキストの一部分を<strong>強調したいとき</strong>は、このように記述してください。
+<pre class="prettyprint linenums"><code>&lt;p&gt;例えば、テキストの一部分を&lt;strong&gt;強調したいとき&lt;/strong&gt;は、このように記述してください。
+<span class="comment">&lt;!-- &lt;p&gt;タグの中の文字を&lt;strong&gt;タグで囲んでください --&gt;</span>
+</code></pre>
+<h4>フォントを一部小さくする</h4>
+    <p>例えば、テキストの一部分を<small>小さくしたいとき</small>は、このように記述してください。
+<pre class="prettyprint linenums"><code>&lt;p&gt;例えば、テキストの一部分を&lt;small&gt;小さくしたいとき&lt;/small&gt;は、このように記述してください。
+<span class="comment">&lt;!-- &lt;p&gt;タグの中の文字を&lt;small&gt;タグで囲んでください --&gt;</span>
+</code></pre>
+    <h4>文章を引用する</h4>
+    <blockquote>
+      <p>ここに引用する文を書きます。
+    </blockquote>
+<pre class="prettyprint linenums"><code>&lt;blockquote&gt;
+  &lt;p&gt;ここに引用する文を書きます。
+&lt;/blockquote&gt;
+</code></pre>
+    <h4>注釈をつける</h4>
+    <p>注釈文を記述するときは、このように記述します。
+    <p class="notes">注釈文が入ります
+<pre class="prettyprint linenums"><code>&lt;p class="notes"&gt;注釈文が入ります
+<span class="comment">&lt;!-- &lt;p&gt;タグに class="notes" をつけてください --&gt;</span>
+</code></pre>
+    <h2 id="ttl-5">リンクやYoutubeの動画を挿入する</h2>
+    <h4>リンクをつける</h4>
+    <p>例えば、このテキストの<a href="#">ここの部分</a>にリンクをつける場合
+<pre class="prettyprint linenums"><code>&lt;p&gt;例えば、このテキストの&lt;a href="#"&gt;ここの部分&lt;/a&gt;にリンクをつける場合
+<span class="comment">&lt;!-- &lt;p&gt;タグの中に&lt;a href="#"&gt;タグを記述。 #の部分にURLを入れてください --&gt;</span>
+</code></pre>
+    <h4>Youtubeの動画を挿入する</h4>
+    <div class="movie-wrap">
+      <iframe width="951" height="535" src="https://www.youtube.com/embed/ogjh7Gt4kas" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p>下記のように記述してください。
+<pre class="prettyprint linenums"><code>&lt;div class="movie-wrap"&gt;
+  &lt;iframe width="951" height="535" src="https://www.youtube.com/embed/ogjh7Gt4kas" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+<span class="comment">&lt;!-- 
+  挿入したいYoutubeの動画を右クリックし、《埋め込みコードをコピー》する。
+  &lt;div&gt;タグの中の&lt;iframe&gt;タグを、コピーした&lt;iframe&gt;タグに差し替えます
+--&gt;</span>
+</code></pre>
+      <p class="notes">文中の画像挿入については、少し手順が多いので別途相談。<br>また補足ですが、文中の数字は【半角英数】、カナは【全角】で入力しましょう！
+    </div>
+    <!-- 上に戻るボタン -->
+    <p id="page_top"><a href="#top"></a></p>
+  </main>
+  <aside class="back-top mb-5">
+    <a href="{% url 'posts:post_list' %}"><i class="fas fa-home orenge"></i> TOPへ戻る</a>
+  </aside>
+
+  <footer class="footer">
+    <p class="mb-0">&copy; <script>document.write(new Date().getFullYear());</script> <a href="https://kaigomedia.co.jp/">株式会社カイゴメディア</a> All Rights Reserved
+  </footer>
+    
+  <script>
+    function contentEditable() {
+    const code = $('.prettyprint');
+    code.attr({
+    contenteditable: true,
+    spellcheck: false,
+    });
+    }
+    window.onload = () => contentEditable();
+    
+    var headerHight = 57; //ヘッダの高さ
+    $('a[href^="#"]').click(function(){
+      var href= $(this).attr("href");
+      var target = $(href == "#" || href == "" ? 'html' : href);
+      var position = target.offset().top-headerHight; //ヘッダの高さ分位置をずらす
+      $("html, body").animate({scrollTop:position}, 550, "swing");
+      return false;
+    });
+
+    var TopBtn = $('#page_top');   
+    var BottomPos = -10; // ボタンの画面下からの位置を指定
+    TopBtn.hide();
+    $(window).scroll(function(e) {
+      $window = $(e.currentTarget);
+      WindowHeight = $window.height(); // ウィンドウの高さ
+      PageHeight = $(document).height(); // ページの高さ
+      footerHeight = $(".footer").height(); // フッタの高さ
+      ScrollTop = $window.scrollTop(); // スクロールした量
+      MoveTopBtn = ScrollTop + footerHeight - PageHeight;
+    // MoveTopBtn = WindowHeight + ScrollTop + footerHeight - PageHeight;
+
+      //スクロール位置が100でボタンを表示
+      if ($(this).scrollTop() > 100) {
+        TopBtn.fadeIn();
+      } 
+      else {
+        TopBtn.fadeOut();
+      }
+
+      // フッターまでスクロールするとボタンを移動
+      if(ScrollTop >= PageHeight - WindowHeight - footerHeight + BottomPos) {
+        TopBtn.css({ bottom: MoveTopBtn });
+      }
+      else {
+        TopBtn.css({ bottom: BottomPos });
+      }	
+    });
+  </script>
+</body>
+</html>
